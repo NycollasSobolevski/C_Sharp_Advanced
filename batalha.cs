@@ -1,5 +1,5 @@
 using System.Collections.Concurrent;
-using System.Threading;
+
 public class batalha
 {
     public batalha(int atacantes, int defensores, int rodadas)
