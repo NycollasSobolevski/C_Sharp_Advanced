@@ -2,17 +2,15 @@ using System.Collections.Concurrent;
 
 public class batalha
 {
-    public batalha(int atacantes, int defensores, int rodadas)
-    {
-        this.attacker = atacantes;
-        this.defenders = defensores;
-        this.round = rodadas;
-    }
+    // public batalha(int atacantes, int defensores)
+    // {
+    //     this.attacker = atacantes;
+    //     this.defenders = defensores;
+    // }
 
-    int attacker { get; set; }
-    int defenders { get; set; }
-    int round { get; set; }
-    Random rand = new Random();
+    public int attacker { get; set; }
+    public int defenders { get; set; }
+    public Random rand = new Random();
 
     bool verify() => this.attacker > 1 && this.defenders > 0  ? true  : false;
 
@@ -24,11 +22,11 @@ public class batalha
         while(verify())
         {
             int menor = Math.Min(attacker,defenders);
-            for (int j = 0; j < 3; j++)
-            {
-                atackList[j] = rand.Next(1,6);
-                defendList[j] = rand.Next(1,6);
-            }
+                for (int j = 0; j < 3; j++)
+                {
+                    atackList[j] = rand.Next(1,7);
+                    defendList[j] = rand.Next(1,7);
+                }  
             Array.Sort(atackList);
             Array.Sort(defendList);
             

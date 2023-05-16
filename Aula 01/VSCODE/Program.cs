@@ -4,11 +4,17 @@ temp.Start();
 
 int count=0;
 // for (int i = 0; i < 10_000; i++)
+batalha bat = new batalha();
 Parallel.For(0,10_000, i=>
 {
-    batalha bat = new batalha(1000,583,1000);
-    if(bat.atack()){
-        count++;
+    bat.attacker  = 1000;
+    bat.defenders = 583;
+    //TODO: implementar o lock de forma que ele nao pegue a função inteira!!!
+    lock (bat.rand)
+    {
+        if(bat.atack()){
+            count++;
+        }
     }
 });
 
