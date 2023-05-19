@@ -71,6 +71,22 @@ public abstract class Function
     mult.Add(g);
     return mult;
   }
+
+  public static Function operator /(Function f, Function g)
+  {
+    Div div = new Div();
+    div.Add(f);
+    div.Add(g);
+    return div;
+  }
+
+  public static Function operator -(Function f, Function g)
+  {
+    Sub sub = new Sub();
+    sub.Add(f);
+    sub.Add(g);
+    return sub;
+  }
 }
 
 public class Linear : Function
@@ -129,65 +145,35 @@ public class Cos : Function
   public override string ToString() 
     => $"cos({inner})";
 }
-
-public class Sum : Function
+public class LnE : Function
 {
-  private List<Function> funcs = new List<Function>();
-  public void Add(Function func)
-    => this.funcs.Add(func);
+    private Function inner;
+    public LnE(Function inner) => this.inner = inner;
 
-  protected override double get(double x)
-    => this.funcs.Sum(f => f[x]);
-  
-  public override Function Derive()
-  {
-    Sum result = new Sum();
-    
-    foreach (var f in this.funcs)
-      result.Add(f.Derive());
-    
-    return result;
-  }
-  
-  public override string ToString()
-  {
-    string str = "(";
+    protected override double get(double x)
+        => Math.Log(inner[x], Math.E);
 
-    foreach (var f in this.funcs)
-      str += f.ToString() + " + ";
+    public override Function Derive()
+    {
+        throw new NotImplementedException();
+    }
 
-    return str.Substring(0, str.Length - 3) + ")";
-  }
+}
+public class Ln : Function
+{
+    private Function inner;
+    private Function Base;
+    public Ln(Function inner, Function Base){
+      this.inner = inner; 
+      this.Base = Base;
+    }
+
+    protected override double get(double x)
+    => Math.Log(inner[x], Base[x]);
+
+    public override Function Derive()
+    {
+        throw new NotImplementedException();
+    }
 }
 
-public class Mult : Function
-{
-  private List<Function> funcs = new List<Function>();
-  public void Add(Function func)
-    => this.funcs.Add(func);
-
-  protected override double get(double x)
-  {
-    double result = 1;
-    
-    foreach (var f in this.funcs)
-      result *= f[x];
-      
-    return result;
-  }
-  
-  public override Function Derive()
-  {
-    return null; // ainda não fiz kk (ainda hua hua)
-  }
-  
-  public override string ToString()
-  {
-    string str = "";
-
-    foreach (var f in this.funcs)
-      str += f.ToString() + " * ";
-
-    return str.Substring(0, str.Length - 3);
-  }
-}

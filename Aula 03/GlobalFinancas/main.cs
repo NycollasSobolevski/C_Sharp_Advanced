@@ -31,6 +31,16 @@ class Program
      
     Company.New(builder);
      
+    builder = Company.GetBuilder();
+
+    builder
+      .SetName("Free Market")
+      .SetInitialCapital(30_000_000)
+      .InEua();
+    builder
+    .AddEmploye("Harvey Junior", 10_000);
+    Company.New(builder);
+    
     Employe employe = new Employe();
     employe.Name = "Xispita";
     employe.Wage = 2_000;
@@ -39,5 +49,10 @@ class Program
     Company.Current.Dismiss("Marcos Bonito");
      
     Company.Current.PayWages();
+    System.Console.WriteLine($"{Company.Current.Name} Company");
+    foreach (var employes in Company.Current.Employes)
+    {
+      System.Console.Write($"{employes.Name} - s");
+    } 
   }
 }
