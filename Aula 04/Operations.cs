@@ -112,6 +112,6 @@ public class Sub : Function
       str += f.ToString() + " - ";
 
     return str.Substring(0, str.Length - 3);
-  }
+  } 
     public override Function Derive() => null;
 }
