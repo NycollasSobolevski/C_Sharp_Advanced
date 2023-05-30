@@ -23,8 +23,8 @@ public abstract class App
         PictureBox pb = new PictureBox();
         pb.Dock = DockStyle.Fill;
         form.Controls.Add(pb);
- 
-        Timer tm = new Timer();
+
+        System.Windows.Forms.Timer tm = new System.Windows.Forms.Timer();
         tm.Interval = 10;
  
         pb.MouseDown += (o, e) =>
