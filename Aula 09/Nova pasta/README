@@ -1,0 +1,2 @@
+comando para  criar a pasta com os dados do banco :
+    '.\createModel.ps1 CT-C-0018C\SQLEXPRESS testentity'
