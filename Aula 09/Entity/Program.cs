@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Nova_pasta.Model;
+using Entity.Model;
 
 
 TestentityContext context = new TestentityContext();
